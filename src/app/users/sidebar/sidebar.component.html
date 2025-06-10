@@ -1,0 +1,32 @@
+<div class="sidebar d-flex flex-column h-100 justify-content-between">
+  <div>
+    <h2>UMS</h2>
+    <div class="profile">
+      <div class="d-flex flex-column align-items-center gap-2">
+        <img class="user-image" [src]="userImage" alt="" />
+        <h3>{{ firstName }} {{ lastName }}</h3>
+        <span>Admin</span>
+      </div>
+    </div>
+    <ul class="sidebar-navigator">
+      <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <a routerLink="/users/users-list"
+          ><img src="../../../assets/images/users.svg" alt="" />Users</a
+        >
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="add"
+          ><img src="../../../assets/images/add-user.svg" alt="" />Add User</a
+        >
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="profile"
+          ><img src="../../../assets/images/profile.svg" alt="" />Profile</a
+        >
+      </li>
+    </ul>
+  </div>
+  <a (click)="onLogout()" class="d-flex justify-content-center logout" href=""
+    >Logout <img src="../../../assets/images/logout.svg" alt=""
+  /></a>
+</div>

@@ -1,0 +1,36 @@
+<div class="dashboard-header d-flex justify-content-between align-items-center">
+  <h2>Users List</h2>
+  <a class="btn-yellow" routerLink="/users/add">Add new user</a>
+</div>
+
+<table class="w-100">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Email Number</th>
+      <th>Date of admission</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td><img class="table-image" [src]="user.image" alt="" /></td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.phone }}</td>
+      <td>{{ user.ssn }}</td>
+      <td>{{ user.birthDate }}</td>
+      <td>
+        <button class="edit-btn" (click)="editUser(user.id)">
+          <img src="../../../assets/images/edit.svg" alt="Edit" />
+        </button>
+        <button class="remove-btn" (click)="deleteUser(user.id)">
+          <img src="../../../assets/images/remove.svg" alt="Delete" />
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

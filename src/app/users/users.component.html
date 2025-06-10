@@ -1,0 +1,28 @@
+<main class="d-flex">
+  <app-sidebar></app-sidebar>
+  <div class="flex-grow-1">
+    <div class="users-header">
+      <div>
+        <img src="../../assets/images/play.svg" alt="" />
+      </div>
+      <div class="d-flex align-items-center gap-4">
+        <div>
+          <input type="search" />
+        </div>
+        <div>
+          <img src="../../assets/images/notification-icon.svg" alt="" />
+        </div>
+      </div>
+    </div>
+    <div
+      style="
+        background-color: #f8f8f8;
+        padding-left: 24px;
+        height: calc(100vh - 60px);
+        overflow-y: auto;
+      "
+    >
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</main>
