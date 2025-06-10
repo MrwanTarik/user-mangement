@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from 'src/app/core/services/users.service';
 import { ToastrService } from 'ngx-toastr';
@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './add-user.component.html',
   styleUrls: ['./add-user.component.css'],
 })
-export class AddUserComponent {
+export class AddUserComponent implements OnInit {
   constructor(
     private _UsersService: UsersService,
     private toastr: ToastrService,
@@ -16,7 +16,7 @@ export class AddUserComponent {
   ) {}
   id: number = 0;
   ngOnInit() {
-    this.id = this._ActivatedRoute.snapshot.params['id'];
+    this.id = +this._ActivatedRoute.snapshot.params['id'] || 0;
     if (this.id) {
       this.getSingleUser();
     }
@@ -58,6 +58,14 @@ export class AddUserComponent {
     this._UsersService.getUserById(this.id).subscribe({
       next: (res) => {
         this.addUserForm.patchValue(res);
+      },
+    });
+  }
+  updateUser(data: any) {
+    this._UsersService.updateUser(this.id, data.value).subscribe({
+      next: (res) => {
+        this.toastr.success('User has been updated successfully');
+        this.addUserForm.reset();
       },
     });
   }

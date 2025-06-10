@@ -25,4 +25,7 @@ export class UsersService {
   deleteUser(id: number): Observable<any> {
     return this._HttpClient.delete(`https://dummyjson.com/users/${id}`);
   }
+  updateUser(id: number, data: any): Observable<any> {
+    return this._HttpClient.put(`https://dummyjson.com/users/${id}`, data);
+  }
 }

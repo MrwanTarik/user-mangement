@@ -1,11 +1,13 @@
 <div class="dashboard-header d-flex justify-content-between align-items-center">
-  <h2>Add User</h2>
-  <a class="btn-yellow invisible" routerLink="/users/add">Add new user</a>
+  <h2>{{ id ? "Edit User" : "Add User" }}</h2>
+  <a [class.invisible]="id > 0" class="btn-yellow" routerLink="/users/add"
+    >Add new user</a
+  >
 </div>
 
 <form
   [formGroup]="addUserForm"
-  (ngSubmit)="addUser(addUserForm)"
+  (ngSubmit)="id ? updateUser(addUserForm) : addUser(addUserForm)"
   class="users-form"
   action=""
 >
@@ -156,7 +158,7 @@
         <label for="username">Birth Date</label>
         <input
           formControlName="birthDate"
-          type="date"
+          type="text"
           placeholder="Select your Birth Date"
           [class.is-invalid]="
             addUserForm.get('birthDate')?.invalid &&
@@ -181,8 +183,18 @@
       style="margin: 40px auto 0; max-width: 415px"
       class="btn-yellow"
       [disabled]="addUserForm.invalid"
+      [class.d-none]="id > 0"
     >
       Save
+    </button>
+    <button
+      type="submit"
+      style="margin: 40px auto 0; max-width: 415px"
+      class="btn-yellow"
+      [disabled]="addUserForm.invalid"
+      [class.d-none]="id === 0"
+    >
+      Update
     </button>
   </div>
 </form>
